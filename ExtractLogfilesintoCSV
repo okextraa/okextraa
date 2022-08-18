@@ -1,0 +1,47 @@
+# Run a loop on a folder to extract or perform operation on the log files
+# The loop should open all the log files in the folder
+# open the log files in the list individually; 
+# Extract the last line and then save to CSV file 
+
+import csv
+
+def Newlogfile():
+    for root, dirs, files in os.walk(r'C:\\Users\\ooo1\\Documents\\CO2_ContamModeling\\Include_Tmetric_Css\\ParallelRunFile'):
+        for file in files:
+            if file.endswith('.log'):
+                continue
+            
+            # open the log file and write to a csv file
+            with open(file) as f, open('logfile.csv', 'w', newline= '') as csvfile:
+                
+                # create a csv writer object
+                csvwriter = csv.writer(csvfile)
+                
+                # Extracting the last line of the log file
+                for line in f.readlines():
+                    csvwriter.writerow(line[-1])
+                                                        
+Newlogfile()
+
+
+# How about this? 
+
+import csv
+
+def Newlogfile():
+    for root, dirs, files in os.walk(r'C:\\Users\\ooo1\\Documents\\CO2_ContamModeling\\Include_Tmetric_Css\\ParallelRunFile'):
+        for file in files:
+            if file.endswith('.log'):
+                continue
+            
+            # open the log file and write to a csv file
+            with open(file) as f, open('logfile.csv', 'w', newline= '') as csvfile:
+                
+                # create a csv writer object
+                csvwriter = csv.writer(csvfile)
+                
+                # Extracting the last line of the log file
+                for line in (f.readlines() [-1]):
+                    csvwriter.writerow(line)
+                                                        
+Newlogfile()
